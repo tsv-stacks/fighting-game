@@ -74,8 +74,6 @@ window.addEventListener("load", () => {
     },
   });
 
-  let lastkey = "";
-
   const keys = {
     a: {
       pressed: false,
@@ -106,9 +104,9 @@ window.addEventListener("load", () => {
     player.velocity.x = 0;
     enemy.velocity.x = 0;
 
-    if (keys.a.pressed && lastkey === "a") {
+    if (keys.a.pressed && player.lastkey === "a") {
       player.velocity.x = -5;
-    } else if (keys.d.pressed && lastkey === "d") {
+    } else if (keys.d.pressed && player.lastkey === "d") {
       player.velocity.x = 5;
     }
 
@@ -126,10 +124,10 @@ window.addEventListener("load", () => {
   window.addEventListener("keydown", (e) => {
     if (e.key === "d") {
       keys.d.pressed = true;
-      lastkey = "d";
+      player.lastkey = "d";
     } else if (e.key === "a") {
       keys.a.pressed = true;
-      lastkey = "a";
+      player.lastkey = "a";
     } else if (e.key === "w" && player.jumps < 1) {
       player.velocity.y = -23;
       player.jumps++;
