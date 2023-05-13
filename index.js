@@ -30,6 +30,19 @@ window.addEventListener("load", () => {
       this.position.x += this.velocity.x;
       this.position.y += this.velocity.y;
 
+      // Check if out of bounds on the left
+      if (this.position.x + this.velocity.x < 0) {
+        this.velocity.x = 0;
+        this.position.x = 0;
+      }
+
+      // Check if out of bounds on the right
+      if (this.position.x + this.velocity.x + 50 > canvas.width) {
+        this.velocity.x = 0;
+        this.position.x = canvas.width - 50;
+      }
+
+      // check player on ground
       if (this.position.y + this.height + this.velocity.y >= canvas.height) {
         this.velocity.y = 0;
         this.jumps = 0;
