@@ -1,4 +1,5 @@
 import keys from "./scripts/keys.js";
+import { rectangularCollision } from "./scripts/utility.js";
 
 window.addEventListener("load", () => {
   const canvas = document.getElementById("canvas1");
@@ -34,15 +35,15 @@ window.addEventListener("load", () => {
       ctx.fillStyle = this.color;
       ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
-      //   if (this.isAttacking) {
-      ctx.fillStyle = "green";
-      ctx.fillRect(
-        this.attackBox.position.x,
-        this.attackBox.position.y,
-        this.attackBox.width,
-        this.attackBox.height
-      );
-      //   }
+      if (this.isAttacking) {
+        ctx.fillStyle = "green";
+        ctx.fillRect(
+          this.attackBox.position.x,
+          this.attackBox.position.y,
+          this.attackBox.width,
+          this.attackBox.height
+        );
+      }
     }
 
     update() {
@@ -140,17 +141,26 @@ window.addEventListener("load", () => {
 
     //  collision detection
     if (
-      player.attackBox.position.x + player.attackBox.width >=
-        enemy.position.x &&
-      player.attackBox.position.x <= enemy.position.x + enemy.width &&
-      player.attackBox.position.y + player.attackBox.height >=
-        enemy.position.y &&
-      player.attackBox.position.y <= enemy.position.y + enemy.height &&
+      rectangularCollision({
+        rectangle1: player,
+        rectangle2: enemy,
+      }) &&
       player.isAttacking
     ) {
       player.isAttacking = false;
-      console.log("hit");
     }
+
+    if (
+      rectangularCollision({
+        rectangle1: enemy,
+        rectangle2: player,
+      }) &&
+      enemy.isAttacking
+    ) {
+      enemy.isAttacking = false;
+      console.log("player hit");
+    }
+
     requestAnimationFrame(animate);
   }
 
@@ -178,6 +188,9 @@ window.addEventListener("load", () => {
     } else if (e.key === " " && !player.isAttacking) {
       console.log("attacking");
       player.attack();
+    } else if (e.key === ";" && !enemy.isAttacking) {
+      console.log("enemy attacking");
+      enemy.attack();
     }
   });
 

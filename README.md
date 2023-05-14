@@ -8,6 +8,6 @@ Future Features:
 - [ ] Flip characters so they are always facing eachother
 - [x] Players cannot go out of bounds
 - [x] Single Jump only
-- [ ]
+- [x] Enemy/P2 attacks with `;`
 - [ ]
 - [ ]
