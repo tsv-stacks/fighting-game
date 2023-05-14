@@ -56,7 +56,10 @@ class Fighter {
     }
 
     // check player on ground
-    if (this.position.y + this.height + this.velocity.y >= this.canvasHeight) {
+    if (
+      this.position.y + this.height + this.velocity.y >=
+      this.canvasHeight - 60
+    ) {
       this.velocity.y = 0;
       this.jumps = 0;
     } else {

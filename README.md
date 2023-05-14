@@ -11,7 +11,7 @@ Future Features:
 - [x] Enemy/P2 attacks with `;`
 - [x] Main game code within 'load' event listener
 - [ ] Get username from react site for player1 name
-- [ ]
-- [ ]
+- [x] Random backgrounds
+- [ ] Animate backgrounds
 - [ ]
 - [ ]
