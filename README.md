@@ -13,6 +13,10 @@ Future Features:
 - [ ] Get username from react site for player1 name
 - [x] Random backgrounds
 - [ ] Animate backgrounds
+- [ ] Seperate background images into layers and render seperately
+- [ ] Make idle for both characters same speed
+- [ ] Make it a best of 3 with win tracker under health bar
+- [ ]
 - [ ]
 - [ ]
 

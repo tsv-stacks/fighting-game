@@ -1,5 +1,5 @@
 import keys from "./scripts/keys.js";
-import { p1sprite } from "./scripts/sprite.js";
+import { p1sprite, p2sprite } from "./scripts/sprite.js";
 import Fighter from "./scripts/Fighter.js";
 import {
   decreaseTimer,
@@ -41,6 +41,7 @@ window.addEventListener("load", () => {
     framesMax: 8,
     scale: 2.5,
     playerOffset: { x: 215, y: 150 },
+    sprites: p1sprite,
   });
 
   const enemy = new Fighter(
@@ -61,7 +62,7 @@ window.addEventListener("load", () => {
       framesMax: 4,
       scale: 2.5,
       playerOffset: { x: 215, y: 165 },
-      sprites: p1sprite,
+      sprites: p2sprite,
     },
     "blue"
   );
@@ -76,20 +77,26 @@ window.addEventListener("load", () => {
     player.update(ctx);
     enemy.update(ctx);
     player.velocity.x = 0;
+    player.image = player.sprites.idle.image;
     enemy.velocity.x = 0;
+    enemy.image = enemy.sprites.idle.image;
 
     // player movement
     if (keys.a.pressed && player.lastkey === "a") {
       player.velocity.x = -5;
+      player.image = player.sprites.run.image;
     } else if (keys.d.pressed && player.lastkey === "d") {
       player.velocity.x = 5;
+      player.image = player.sprites.run.image;
     }
 
     // enemy movement
     if (keys.ArrowRight.pressed && enemy.lastkey === "ArrowRight") {
       enemy.velocity.x = 5;
+      // enemy.image = enemy.sprites.run.image;
     } else if (keys.ArrowLeft.pressed && enemy.lastkey === "ArrowLeft") {
       enemy.velocity.x = -5;
+      // enemy.image = enemy.sprites.run.image;
     }
 
     //  collision detection

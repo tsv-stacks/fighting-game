@@ -41,6 +41,11 @@ class Fighter {
     this.framesElapsed = 0;
     this.framesHold = 5;
     this.offset = offset;
+
+    for (const sprite in this.sprites) {
+      sprites[sprite].image = new Image();
+      sprites[sprite].image.src = sprites[sprite].imageSrc;
+    }
   }
 
   draw(ctx) {
