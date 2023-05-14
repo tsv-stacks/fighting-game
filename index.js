@@ -11,17 +11,33 @@ window.addEventListener("load", () => {
   const gravity = 0.7;
 
   class Sprite {
-    constructor({ position, velocity }) {
+    constructor({ position, velocity }, color = "red") {
       this.position = position;
       this.velocity = velocity;
+      this.width = 50;
       this.height = 150;
       this.lastkey = "";
       this.jumps = 0;
+      this.color = color;
+      this.attackBox = {
+        position: this.position,
+        width: 100,
+        height: 50,
+      };
+      this.isAttacking = false;
     }
 
     draw() {
-      ctx.fillStyle = "red";
-      ctx.fillRect(this.position.x, this.position.y, 50, this.height);
+      ctx.fillStyle = this.color;
+      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+      ctx.fillStyle = "green";
+      ctx.fillRect(
+        this.attackBox.position.x,
+        this.attackBox.position.y,
+        this.attackBox.width,
+        this.attackBox.height
+      );
     }
 
     update() {
@@ -50,6 +66,8 @@ window.addEventListener("load", () => {
         this.velocity.y += gravity;
       }
     }
+
+    attack() {}
   }
 
   const player = new Sprite({
@@ -63,16 +81,19 @@ window.addEventListener("load", () => {
     },
   });
 
-  const enemy = new Sprite({
-    position: {
-      x: 400,
-      y: 100,
+  const enemy = new Sprite(
+    {
+      position: {
+        x: 400,
+        y: 100,
+      },
+      velocity: {
+        x: 0,
+        y: 0,
+      },
     },
-    velocity: {
-      x: 0,
-      y: 0,
-    },
-  });
+    (color = "blue")
+  );
 
   const keys = {
     a: {
@@ -104,18 +125,32 @@ window.addEventListener("load", () => {
     player.velocity.x = 0;
     enemy.velocity.x = 0;
 
+    // player movement
     if (keys.a.pressed && player.lastkey === "a") {
       player.velocity.x = -5;
     } else if (keys.d.pressed && player.lastkey === "d") {
       player.velocity.x = 5;
     }
 
+    // enemy movement
     if (keys.ArrowRight.pressed && enemy.lastkey === "ArrowRight") {
       enemy.velocity.x = 5;
     } else if (keys.ArrowLeft.pressed && enemy.lastkey === "ArrowLeft") {
       enemy.velocity.x = -5;
     }
 
+    //  collision detection
+    if (
+      player.attackBox.position.x + player.attackBox.width >=
+        enemy.position.x &&
+      player.attackBox.position.x <= enemy.position.x &&
+      player.attackBox.position.y + player.attackBox.height >=
+        enemy.position.y &&
+      player.attackBox.position.y <= enemy.position.y + enemy.height &&
+      player.isAttacking
+    ) {
+      console.log("hit");
+    }
     requestAnimationFrame(animate);
   }
 
