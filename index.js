@@ -1,3 +1,5 @@
+import keys from "./scripts/keys.js";
+
 window.addEventListener("load", () => {
   const canvas = document.getElementById("canvas1");
   const ctx = canvas.getContext("2d");
@@ -11,7 +13,7 @@ window.addEventListener("load", () => {
   const gravity = 0.7;
 
   class Sprite {
-    constructor({ position, velocity }, color = "red") {
+    constructor({ position, velocity, offset }, color = "red") {
       this.position = position;
       this.velocity = velocity;
       this.width = 50;
@@ -20,7 +22,8 @@ window.addEventListener("load", () => {
       this.jumps = 0;
       this.color = color;
       this.attackBox = {
-        position: this.position,
+        position: { x: this.position.x, y: this.position.y },
+        offset,
         width: 100,
         height: 50,
       };
@@ -31,6 +34,7 @@ window.addEventListener("load", () => {
       ctx.fillStyle = this.color;
       ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 
+      //   if (this.isAttacking) {
       ctx.fillStyle = "green";
       ctx.fillRect(
         this.attackBox.position.x,
@@ -38,10 +42,13 @@ window.addEventListener("load", () => {
         this.attackBox.width,
         this.attackBox.height
       );
+      //   }
     }
 
     update() {
       this.draw();
+      this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+      this.attackBox.position.y = this.position.y;
 
       this.position.x += this.velocity.x;
       this.position.y += this.velocity.y;
@@ -67,15 +74,24 @@ window.addEventListener("load", () => {
       }
     }
 
-    attack() {}
+    attack() {
+      this.isAttacking = true;
+      setTimeout(() => {
+        this.isAttacking = false;
+      }, 100);
+    }
   }
 
   const player = new Sprite({
     position: {
-      x: 0,
+      x: 226,
       y: 0,
     },
     velocity: {
+      x: 0,
+      y: 0,
+    },
+    offset: {
       x: 0,
       y: 0,
     },
@@ -84,37 +100,20 @@ window.addEventListener("load", () => {
   const enemy = new Sprite(
     {
       position: {
-        x: 400,
-        y: 100,
+        x: 768,
+        y: 0,
       },
       velocity: {
         x: 0,
         y: 0,
       },
+      offset: {
+        x: -50,
+        y: 0,
+      },
     },
-    (color = "blue")
+    "blue"
   );
-
-  const keys = {
-    a: {
-      pressed: false,
-    },
-    d: {
-      pressed: false,
-    },
-    w: {
-      pressed: false,
-    },
-    ArrowRight: {
-      pressed: false,
-    },
-    ArrowLeft: {
-      pressed: false,
-    },
-    ArrowUp: {
-      pressed: false,
-    },
-  };
 
   function animate() {
     ctx.fillStyle = "black";
@@ -143,12 +142,13 @@ window.addEventListener("load", () => {
     if (
       player.attackBox.position.x + player.attackBox.width >=
         enemy.position.x &&
-      player.attackBox.position.x <= enemy.position.x &&
+      player.attackBox.position.x <= enemy.position.x + enemy.width &&
       player.attackBox.position.y + player.attackBox.height >=
         enemy.position.y &&
       player.attackBox.position.y <= enemy.position.y + enemy.height &&
       player.isAttacking
     ) {
+      player.isAttacking = false;
       console.log("hit");
     }
     requestAnimationFrame(animate);
@@ -175,6 +175,9 @@ window.addEventListener("load", () => {
     } else if (e.key === "ArrowUp" && enemy.jumps < 1) {
       enemy.velocity.y = -23;
       enemy.jumps++;
+    } else if (e.key === " " && !player.isAttacking) {
+      console.log("attacking");
+      player.attack();
     }
   });
 

@@ -1,4 +1,13 @@
-Features I added:
+# 2D Two Player Fighting Game
 
-- Single Jump only
-- Players cannot go out of bounds
+Future Features:
+
+- [ ] Roll through attacks
+- [ ] Music
+- [ ] Narrator sounds
+- [ ] Flip characters so they are always facing eachother
+- [x] Players cannot go out of bounds
+- [x] Single Jump only
+- [ ]
+- [ ]
+- [ ]
