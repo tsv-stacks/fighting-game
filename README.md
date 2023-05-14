@@ -19,4 +19,5 @@ Future Features:
 ## Credits
 
 Martial Hero 2 by [LuizMelo](https://luizmelo.itch.io/martial-hero-2)
+
 Martial Hero by [LuizMelo](https://luizmelo.itch.io/martial-hero)

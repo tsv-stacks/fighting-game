@@ -8,9 +8,11 @@ class Fighter {
       scale = 1,
       framesMax = 1,
       playerOffset = { x: 0, y: 0 },
+      sprites,
     },
     color = "red"
   ) {
+    this.sprites = sprites;
     this.position = position;
     this.velocity = velocity;
     this.canvasWidth = 1024;

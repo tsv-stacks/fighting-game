@@ -1,4 +1,5 @@
 import keys from "./scripts/keys.js";
+import { p1sprite } from "./scripts/sprite.js";
 import Fighter from "./scripts/Fighter.js";
 import {
   decreaseTimer,
@@ -60,6 +61,7 @@ window.addEventListener("load", () => {
       framesMax: 4,
       scale: 2.5,
       playerOffset: { x: 215, y: 165 },
+      sprites: p1sprite,
     },
     "blue"
   );
