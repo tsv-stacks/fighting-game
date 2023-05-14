@@ -4,6 +4,8 @@ import { rectangularCollision } from "./scripts/utility.js";
 window.addEventListener("load", () => {
   const canvas = document.getElementById("canvas1");
   const ctx = canvas.getContext("2d");
+  const enemyHealth = document.getElementById("enemyHealth");
+  const playerHealth = document.getElementById("playerHealth");
 
   canvas.width = 1024;
   canvas.height = 576;
@@ -29,6 +31,7 @@ window.addEventListener("load", () => {
         height: 50,
       };
       this.isAttacking = false;
+      this.health = 100;
     }
 
     draw() {
@@ -148,6 +151,8 @@ window.addEventListener("load", () => {
       player.isAttacking
     ) {
       player.isAttacking = false;
+      enemy.health -= 25;
+      enemyHealth.style.width = `${enemy.health}%`;
     }
 
     if (
@@ -158,7 +163,8 @@ window.addEventListener("load", () => {
       enemy.isAttacking
     ) {
       enemy.isAttacking = false;
-      console.log("player hit");
+      player.health -= 25;
+      playerHealth.style.width = `${player.health}%`;
     }
 
     requestAnimationFrame(animate);

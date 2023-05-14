@@ -4,7 +4,6 @@
 }
 
 .red-container {
-  background-color: black;
   position: absolute;
   display: flex;
   width: 100%;
@@ -61,6 +60,7 @@
 .enemy-bar {
   background-color: red;
   height: 30px;
+  width: 100%;
 }
 
 #enemyHealth {
