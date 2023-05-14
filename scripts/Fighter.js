@@ -4,7 +4,7 @@ class Fighter {
       position,
       velocity,
       offset,
-      imageSrc = "./assets/player1/Idle.png",
+      imageSrc,
       scale = 1,
       framesMax = 1,
       playerOffset = { x: 0, y: 0 },
@@ -69,6 +69,7 @@ class Fighter {
     this.draw(ctx);
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y;
+
     this.framesElapsed++;
 
     if (this.framesElapsed % this.framesHold === 0) {
