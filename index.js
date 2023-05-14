@@ -1,5 +1,5 @@
 import keys from "./scripts/keys.js";
-import { rectangularCollision } from "./scripts/utility.js";
+import { rectangularCollision, decreaseTimer } from "./scripts/utility.js";
 
 window.addEventListener("load", () => {
   const canvas = document.getElementById("canvas1");
@@ -118,6 +118,8 @@ window.addEventListener("load", () => {
     },
     "blue"
   );
+
+  decreaseTimer();
 
   function animate() {
     ctx.fillStyle = "black";
