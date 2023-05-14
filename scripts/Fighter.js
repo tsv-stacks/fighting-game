@@ -1,5 +1,16 @@
 class Fighter {
-  constructor({ position, velocity, offset }, color = "red") {
+  constructor(
+    {
+      position,
+      velocity,
+      offset,
+      imageSrc,
+      scale = 1,
+      framesMax = 1,
+      playerOffset = { x: 0, y: 0 },
+    },
+    color = "red"
+  ) {
     this.position = position;
     this.velocity = velocity;
     this.canvasWidth = 1024;
@@ -18,11 +29,30 @@ class Fighter {
     };
     this.isAttacking = false;
     this.health = 100;
+
+    this.playerOffset = playerOffset;
+    this.image = new Image();
+    this.image.src = imageSrc;
+    this.scale = scale;
+    this.framesMax = framesMax;
+    this.framesCurrent = 0;
+    this.framesElapsed = 0;
+    this.framesHold = 5;
+    this.offset = offset;
   }
 
   draw(ctx) {
-    ctx.fillStyle = this.color;
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    ctx.drawImage(
+      this.image,
+      this.framesCurrent * (this.image.width / this.framesMax),
+      0,
+      this.image.width / this.framesMax,
+      this.image.height,
+      this.position.x - this.playerOffset.x,
+      this.position.y - this.playerOffset.y,
+      (this.image.width / this.framesMax) * this.scale,
+      this.image.height * this.scale
+    );
 
     if (this.isAttacking) {
       ctx.fillStyle = "green";
@@ -39,6 +69,16 @@ class Fighter {
     this.draw(ctx);
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y;
+
+    this.framesElapsed++;
+
+    if (this.framesElapsed % this.framesHold === 0) {
+      if (this.framesCurrent < this.framesMax - 1) {
+        this.framesCurrent++;
+      } else {
+        this.framesCurrent = 0;
+      }
+    }
 
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;

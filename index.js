@@ -36,6 +36,10 @@ window.addEventListener("load", () => {
       x: 0,
       y: 0,
     },
+    imageSrc: "./assets/player1/Idle.png",
+    framesMax: 8,
+    scale: 2.5,
+    playerOffset: { x: 215, y: 150 },
   });
 
   const enemy = new Fighter(
@@ -52,6 +56,10 @@ window.addEventListener("load", () => {
         x: -50,
         y: 0,
       },
+      imageSrc: "./assets/player2/Idle.png",
+      framesMax: 4,
+      scale: 2.5,
+      playerOffset: { x: 215, y: 165 },
     },
     "blue"
   );
