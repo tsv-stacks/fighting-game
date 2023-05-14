@@ -36,7 +36,13 @@ window.addEventListener("load", () => {
       x: 0,
       y: 0,
     },
+    imageSrc: "./assets/player1/Idle.png",
+    framesMax: 8,
+    scale: 2.5,
+    playerOffset: { x: 215, y: 150 },
   });
+
+  console.log(player.image.src);
 
   const enemy = new Fighter(
     {
