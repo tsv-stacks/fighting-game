@@ -28,11 +28,11 @@ export function determineWinner({ player, enemy, timerId }) {
   clearTimeout(timerId);
   document.getElementById("displayText").style.display = "flex";
   if (player.health === enemy.health) {
-    document.getElementById("displayText").innerHTML = "Tie";
+    document.getElementById("displayText").innerHTML = "DRAW";
   } else if (player.health > enemy.health) {
-    document.getElementById("displayText").innerHTML = "Player 1 Wins";
+    document.getElementById("displayText").innerHTML = "PLAYER 1 WINS";
   } else if (player.health < enemy.health) {
-    document.getElementById("displayText").innerHTML = "Player 2 Wins";
+    document.getElementById("displayText").innerHTML = "PLAYER 2 WINS";
   }
 }
 

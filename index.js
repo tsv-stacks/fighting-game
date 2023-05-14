@@ -6,6 +6,7 @@ import {
   timer,
   timerId,
 } from "./scripts/utility.js";
+import { background } from "./scripts/background.js";
 
 window.addEventListener("load", () => {
   const canvas = document.getElementById("canvas1");
@@ -21,7 +22,7 @@ window.addEventListener("load", () => {
 
   const gravity = 0.7;
 
-  class Sprite {
+  class Fighter {
     constructor({ position, velocity, offset }, color = "red") {
       this.position = position;
       this.velocity = velocity;
@@ -92,7 +93,7 @@ window.addEventListener("load", () => {
     }
   }
 
-  const player = new Sprite({
+  const player = new Fighter({
     position: {
       x: 226,
       y: 0,
@@ -107,7 +108,7 @@ window.addEventListener("load", () => {
     },
   });
 
-  const enemy = new Sprite(
+  const enemy = new Fighter(
     {
       position: {
         x: 768,
@@ -130,9 +131,10 @@ window.addEventListener("load", () => {
   function animate() {
     ctx.fillStyle = "black";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    background(ctx, canvas.width, canvas.height);
     player.update();
     enemy.update();
-
     player.velocity.x = 0;
     enemy.velocity.x = 0;
 
@@ -193,7 +195,7 @@ window.addEventListener("load", () => {
       keys.a.pressed = true;
       player.lastkey = "a";
     } else if (e.key === "w" && player.jumps < 1) {
-      player.velocity.y = -23;
+      player.velocity.y = -20;
       player.jumps++;
     } else if (e.key === "ArrowRight") {
       keys.ArrowRight.pressed = true;
@@ -202,7 +204,7 @@ window.addEventListener("load", () => {
       keys.ArrowLeft.pressed = true;
       enemy.lastkey = "ArrowLeft";
     } else if (e.key === "ArrowUp" && enemy.jumps < 1) {
-      enemy.velocity.y = -23;
+      enemy.velocity.y = -20;
       enemy.jumps++;
     } else if (e.key === " " && !player.isAttacking) {
       console.log("attacking");

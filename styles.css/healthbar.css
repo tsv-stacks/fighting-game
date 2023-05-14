@@ -74,9 +74,11 @@
 
 #displayText {
   position: absolute;
-  color: black;
+  color: white;
+  text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000,
+    3px 3px 0 #000;
   align-items: center;
-  font-size: 24px;
+  font-size: 36px;
   justify-content: center;
   top: 0;
   right: 0;
