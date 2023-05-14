@@ -74,8 +74,9 @@
 
 #displayText {
   position: absolute;
-  color: white;
+  color: black;
   align-items: center;
+  font-size: 24px;
   justify-content: center;
   top: 0;
   right: 0;

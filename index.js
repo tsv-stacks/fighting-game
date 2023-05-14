@@ -1,5 +1,11 @@
 import keys from "./scripts/keys.js";
-import { rectangularCollision, decreaseTimer } from "./scripts/utility.js";
+import {
+  decreaseTimer,
+  determineWinner,
+  rectangularCollision,
+  timer,
+  timerId,
+} from "./scripts/utility.js";
 
 window.addEventListener("load", () => {
   const canvas = document.getElementById("canvas1");
@@ -119,7 +125,7 @@ window.addEventListener("load", () => {
     "blue"
   );
 
-  decreaseTimer();
+  decreaseTimer(player, enemy);
 
   function animate() {
     ctx.fillStyle = "black";
@@ -167,6 +173,11 @@ window.addEventListener("load", () => {
       enemy.isAttacking = false;
       player.health -= 25;
       playerHealth.style.width = `${player.health}%`;
+    }
+
+    // endgame based on health
+    if (enemy.health <= 0 || player.health <= 0) {
+      determineWinner({ player, enemy, timerId });
     }
 
     requestAnimationFrame(animate);
