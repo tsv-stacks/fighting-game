@@ -13,8 +13,6 @@ import { background } from "./scripts/background.js";
 window.addEventListener("load", () => {
   const canvas = document.getElementById("canvas1");
   const ctx = canvas.getContext("2d");
-  const enemyHealth = document.getElementById("enemyHealth");
-  const playerHealth = document.getElementById("playerHealth");
 
   canvas.width = 1024;
   canvas.height = 576;
@@ -144,7 +142,9 @@ window.addEventListener("load", () => {
       enemy.takeHit();
       player.isAttacking = false;
       enemy.health -= 25;
-      enemyHealth.style.width = `${enemy.health}%`;
+      gsap.to("#enemyHealth", {
+        width: `${enemy.health}%`,
+      });
     }
 
     if (player.isAttacking && player.framesCurrent === 4) {
@@ -162,7 +162,9 @@ window.addEventListener("load", () => {
       enemy.isAttacking = false;
       player.takeHit();
       player.health -= 25;
-      playerHealth.style.width = `${player.health}%`;
+      gsap.to("#playerHealth", {
+        width: `${player.health}%`,
+      });
     }
 
     // if player misses
@@ -192,7 +194,6 @@ window.addEventListener("load", () => {
         player.velocity.y = -20;
         player.jumps++;
       } else if (e.key === " " && !player.isAttacking) {
-        console.log("attacking");
         player.attack();
       }
     }
@@ -208,7 +209,6 @@ window.addEventListener("load", () => {
         enemy.velocity.y = -20;
         enemy.jumps++;
       } else if (e.key === ";" && !enemy.isAttacking) {
-        console.log("enemy attacking");
         enemy.attack();
       }
     }
