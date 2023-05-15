@@ -108,6 +108,7 @@ class Fighter {
       this.canvasHeight - 60
     ) {
       this.velocity.y = 0;
+      this.position.y = 366;
       this.jumps = 0;
     } else {
       this.velocity.y += this.gravity;
@@ -119,6 +120,26 @@ class Fighter {
     setTimeout(() => {
       this.isAttacking = false;
     }, 100);
+  }
+
+  switchSprite(sprite) {
+    if (sprite === "idle" && this.image !== this.sprites.idle.image) {
+      this.image = this.sprites.idle.image;
+      this.framesMax = this.sprites.idle.framesMax;
+      this.framesCurrent = 0;
+    } else if (sprite === "run" && this.image !== this.sprites.run.image) {
+      this.image = this.sprites.run.image;
+      this.framesMax = this.sprites.run.framesMax;
+      this.framesCurrent = 0;
+    } else if (sprite === "jump" && this.image !== this.sprites.jump.image) {
+      this.image = this.sprites.jump.image;
+      this.framesMax = this.sprites.jump.framesMax;
+      this.framesCurrent = 0;
+    } else if (sprite === "fall" && this.image !== this.sprites.fall.image) {
+      this.image = this.sprites.fall.image;
+      this.framesMax = this.sprites.fall.framesMax;
+      this.framesCurrent = 0;
+    }
   }
 }
 

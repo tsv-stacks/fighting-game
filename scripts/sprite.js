@@ -7,6 +7,14 @@ const p1sprite = {
     imageSrc: "./assets/player1/Run.png",
     framesMax: 8,
   },
+  jump: {
+    imageSrc: "./assets/player1/Jump.png",
+    framesMax: 2,
+  },
+  fall: {
+    imageSrc: "./assets/player1/Fall.png",
+    framesMax: 2,
+  },
 };
 
 const p2sprite = {

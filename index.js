@@ -76,18 +76,26 @@ window.addEventListener("load", () => {
     background(ctx, canvas.width, canvas.height);
     player.update(ctx);
     enemy.update(ctx);
+
     player.velocity.x = 0;
-    player.image = player.sprites.idle.image;
     enemy.velocity.x = 0;
-    enemy.image = enemy.sprites.idle.image;
 
     // player movement
+
     if (keys.a.pressed && player.lastkey === "a") {
       player.velocity.x = -5;
-      player.image = player.sprites.run.image;
+      player.switchSprite("run");
     } else if (keys.d.pressed && player.lastkey === "d") {
       player.velocity.x = 5;
-      player.image = player.sprites.run.image;
+      player.switchSprite("run");
+    } else {
+      player.switchSprite("idle");
+    }
+
+    if (player.velocity.y < 0) {
+      player.switchSprite("jump");
+    } else if (player.velocity.y > 0) {
+      player.switchSprite("fall");
     }
 
     // enemy movement
