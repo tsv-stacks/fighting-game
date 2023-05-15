@@ -140,6 +140,7 @@ window.addEventListener("load", () => {
       player.isAttacking &&
       player.framesCurrent === 4
     ) {
+      enemy.takeHit();
       player.isAttacking = false;
       enemy.health -= 25;
       enemyHealth.style.width = `${enemy.health}%`;
@@ -158,6 +159,7 @@ window.addEventListener("load", () => {
       enemy.framesCurrent === 2
     ) {
       enemy.isAttacking = false;
+      player.takeHit();
       player.health -= 25;
       playerHealth.style.width = `${player.health}%`;
     }

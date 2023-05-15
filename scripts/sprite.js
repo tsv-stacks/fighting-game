@@ -19,6 +19,10 @@ const p1sprite = {
     imageSrc: "./assets/player1/Attack1.png",
     framesMax: 6,
   },
+  takeHit: {
+    imageSrc: "./assets/player1/TakeHit.png",
+    framesMax: 4,
+  },
 };
 
 const p2sprite = {
@@ -41,6 +45,10 @@ const p2sprite = {
   attack1: {
     imageSrc: "./assets/player2/Attack1.png",
     framesMax: 4,
+  },
+  takeHit: {
+    imageSrc: "./assets/player2/TakeHit.png",
+    framesMax: 3,
   },
 };
 
