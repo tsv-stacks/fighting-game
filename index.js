@@ -137,11 +137,16 @@ window.addEventListener("load", () => {
         rectangle1: player,
         rectangle2: enemy,
       }) &&
-      player.isAttacking
+      player.isAttacking &&
+      player.framesCurrent === 4
     ) {
       player.isAttacking = false;
       enemy.health -= 25;
       enemyHealth.style.width = `${enemy.health}%`;
+    }
+
+    if (player.isAttacking && player.framesCurrent === 4) {
+      player.isAttacking = false;
     }
 
     if (
@@ -149,11 +154,17 @@ window.addEventListener("load", () => {
         rectangle1: enemy,
         rectangle2: player,
       }) &&
-      enemy.isAttacking
+      enemy.isAttacking &&
+      enemy.framesCurrent === 2
     ) {
       enemy.isAttacking = false;
       player.health -= 25;
       playerHealth.style.width = `${player.health}%`;
+    }
+
+    // if player misses
+    if (enemy.isAttacking && enemy.framesCurrent === 2) {
+      enemy.isAttacking = false;
     }
 
     // endgame based on health
