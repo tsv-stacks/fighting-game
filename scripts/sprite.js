@@ -30,6 +30,18 @@ const p2sprite = {
     imageSrc: "./assets/player2/Run.png",
     framesMax: 8,
   },
+  jump: {
+    imageSrc: "./assets/player2/Jump.png",
+    framesMax: 2,
+  },
+  fall: {
+    imageSrc: "./assets/player2/Fall.png",
+    framesMax: 2,
+  },
+  attack1: {
+    imageSrc: "./assets/player2/Attack1.png",
+    framesMax: 4,
+  },
 };
 
 export { p1sprite, p2sprite };
