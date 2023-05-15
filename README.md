@@ -16,8 +16,8 @@ Future Features:
 - [ ] Seperate background images into layers and render seperately
 - [ ] Make idle for both characters same speed
 - [ ] Make it a best of 3 with win tracker under health bar
-- [ ]
-- [ ]
+- [ ] Game over screen + pause game
+- [ ] When both players moving in same direction move parallax bg
 - [ ]
 
 ## Credits
