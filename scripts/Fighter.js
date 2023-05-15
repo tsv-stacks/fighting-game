@@ -60,16 +60,6 @@ class Fighter {
       (this.image.width / this.framesMax) * this.scale,
       this.image.height * this.scale
     );
-
-    if (this.isAttacking) {
-      ctx.fillStyle = "green";
-      ctx.fillRect(
-        this.attackBox.position.x,
-        this.attackBox.position.y,
-        this.attackBox.width,
-        this.attackBox.height
-      );
-    }
   }
 
   update(ctx) {
@@ -116,6 +106,7 @@ class Fighter {
   }
 
   attack() {
+    this.switchSprite("attack1");
     this.isAttacking = true;
     setTimeout(() => {
       this.isAttacking = false;
@@ -123,6 +114,12 @@ class Fighter {
   }
 
   switchSprite(sprite) {
+    if (
+      this.image === this.sprites.attack1.image &&
+      this.framesCurrent < this.sprites.attack1.framesMax - 1
+    )
+      return;
+
     if (sprite === "idle" && this.image !== this.sprites.idle.image) {
       this.image = this.sprites.idle.image;
       this.framesMax = this.sprites.idle.framesMax;
@@ -138,6 +135,13 @@ class Fighter {
     } else if (sprite === "fall" && this.image !== this.sprites.fall.image) {
       this.image = this.sprites.fall.image;
       this.framesMax = this.sprites.fall.framesMax;
+      this.framesCurrent = 0;
+    } else if (
+      sprite === "attack1" &&
+      this.image !== this.sprites.attack1.image
+    ) {
+      this.image = this.sprites.attack1.image;
+      this.framesMax = this.sprites.attack1.framesMax;
       this.framesCurrent = 0;
     }
   }
