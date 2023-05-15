@@ -42,6 +42,14 @@ window.addEventListener("load", () => {
     scale: 2.5,
     playerOffset: { x: 215, y: 150 },
     sprites: p1sprite,
+    attackBox: {
+      offset: {
+        x: 100,
+        y: 50,
+      },
+      width: 160,
+      height: 50,
+    },
   });
 
   const enemy = new Fighter(
@@ -63,6 +71,14 @@ window.addEventListener("load", () => {
       scale: 2.5,
       playerOffset: { x: 215, y: 165 },
       sprites: p2sprite,
+      attackBox: {
+        offset: {
+          x: -170,
+          y: 50,
+        },
+        width: 170,
+        height: 50,
+      },
     },
     "blue"
   );

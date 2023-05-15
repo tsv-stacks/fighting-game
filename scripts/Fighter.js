@@ -9,6 +9,7 @@ class Fighter {
       framesMax = 1,
       playerOffset = { x: 0, y: 0 },
       sprites,
+      attackBox = { offset: {}, width: undefined, height: undefined },
     },
     color = "red"
   ) {
@@ -24,10 +25,13 @@ class Fighter {
     this.jumps = 0;
     this.color = color;
     this.attackBox = {
-      position: { x: this.position.x, y: this.position.y },
-      offset,
-      width: 100,
-      height: 50,
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+      },
+      offset: attackBox.offset,
+      width: attackBox.width,
+      height: attackBox.height,
     };
     this.isAttacking = false;
     this.health = 100;
@@ -64,6 +68,7 @@ class Fighter {
 
   update(ctx) {
     this.draw(ctx);
+
     this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
     this.attackBox.position.y = this.position.y;
 
