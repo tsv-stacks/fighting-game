@@ -67,14 +67,8 @@ class Fighter {
     );
   }
 
-  update(ctx) {
-    this.draw(ctx);
-
-    this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-    this.attackBox.position.y = this.position.y;
-
+  animateFrames() {
     this.framesElapsed++;
-
     if (this.framesElapsed % this.framesHold === 0) {
       if (this.framesCurrent < this.framesMax - 1) {
         this.framesCurrent++;
@@ -82,6 +76,17 @@ class Fighter {
         this.framesCurrent = 0;
       }
     }
+  }
+
+  update(ctx) {
+    this.draw(ctx);
+
+    if (!this.dead) {
+      this.animateFrames();
+    }
+
+    this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
+    this.attackBox.position.y = this.position.y;
 
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
@@ -109,6 +114,10 @@ class Fighter {
     } else {
       this.velocity.y += this.gravity;
     }
+
+    if (this.health <= 0) {
+      this.switchSprite("death");
+    }
   }
 
   attack() {
@@ -128,9 +137,8 @@ class Fighter {
 
   switchSprite(sprite) {
     if (this.image === this.sprites.death.image) {
-      if (this.framesCurrent === this.sprites.death.framesMax - 1) {
+      if (this.framesCurrent === this.sprites.death.framesMax - 1)
         this.dead = true;
-      }
       return;
     }
 

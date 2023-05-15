@@ -90,6 +90,7 @@ window.addEventListener("load", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     background(ctx, canvas.width, canvas.height);
+
     player.update(ctx);
     enemy.update(ctx);
 

@@ -55,7 +55,7 @@ const p2sprite = {
     framesMax: 3,
   },
   death: {
-    imageSrc: "./assets/player1/Death.png",
+    imageSrc: "./assets/player2/Death.png",
     framesMax: 7,
   },
 };
