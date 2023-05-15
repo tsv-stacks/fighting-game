@@ -47,6 +47,8 @@ class Fighter {
     this.offset = offset;
     this.dead = false;
 
+    this.attackCooldown = false;
+
     for (const sprite in this.sprites) {
       sprites[sprite].image = new Image();
       sprites[sprite].image.src = sprites[sprite].imageSrc;
@@ -121,8 +123,16 @@ class Fighter {
   }
 
   attack() {
+    if (this.attackCooldown) {
+      return;
+    }
     this.switchSprite("attack1");
+    this.attackCooldown = true;
     this.isAttacking = true;
+
+    setTimeout(() => {
+      this.attackCooldown = false;
+    }, 600);
   }
 
   takeHit() {
