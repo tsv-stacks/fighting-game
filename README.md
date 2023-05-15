@@ -18,6 +18,8 @@ Future Features:
 - [ ] Make it a best of 3 with win tracker under health bar
 - [ ] Game over screen + pause game
 - [ ] When both players moving in same direction move parallax bg
+- [x] Refactor all switch statements to if-else
+- [ ]
 - [ ]
 
 ## Credits

@@ -15,6 +15,18 @@ const p1sprite = {
     imageSrc: "./assets/player1/Fall.png",
     framesMax: 2,
   },
+  attack1: {
+    imageSrc: "./assets/player1/Attack1.png",
+    framesMax: 6,
+  },
+  takeHit: {
+    imageSrc: "./assets/player1/TakeHit.png",
+    framesMax: 4,
+  },
+  death: {
+    imageSrc: "./assets/player1/Death.png",
+    framesMax: 6,
+  },
 };
 
 const p2sprite = {
@@ -25,6 +37,26 @@ const p2sprite = {
   run: {
     imageSrc: "./assets/player2/Run.png",
     framesMax: 8,
+  },
+  jump: {
+    imageSrc: "./assets/player2/Jump.png",
+    framesMax: 2,
+  },
+  fall: {
+    imageSrc: "./assets/player2/Fall.png",
+    framesMax: 2,
+  },
+  attack1: {
+    imageSrc: "./assets/player2/Attack1.png",
+    framesMax: 4,
+  },
+  takeHit: {
+    imageSrc: "./assets/player2/TakeHit.png",
+    framesMax: 3,
+  },
+  death: {
+    imageSrc: "./assets/player2/Death.png",
+    framesMax: 7,
   },
 };
 

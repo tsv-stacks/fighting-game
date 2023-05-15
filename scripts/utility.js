@@ -10,7 +10,7 @@ export function rectangularCollision({ rectangle1, rectangle2 }) {
   );
 }
 
-let timer = 10;
+let timer = 60;
 let timerId;
 export function decreaseTimer(player, enemy) {
   if (timer > 0) {
