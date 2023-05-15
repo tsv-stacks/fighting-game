@@ -101,10 +101,18 @@ window.addEventListener("load", () => {
     // enemy movement
     if (keys.ArrowRight.pressed && enemy.lastkey === "ArrowRight") {
       enemy.velocity.x = 5;
-      // enemy.image = enemy.sprites.run.image;
+      enemy.switchSprite("run");
     } else if (keys.ArrowLeft.pressed && enemy.lastkey === "ArrowLeft") {
       enemy.velocity.x = -5;
-      // enemy.image = enemy.sprites.run.image;
+      enemy.switchSprite("run");
+    } else {
+      enemy.switchSprite("idle");
+    }
+
+    if (enemy.velocity.y < 0) {
+      enemy.switchSprite("jump");
+    } else if (enemy.velocity.y > 0) {
+      enemy.switchSprite("fall");
     }
 
     //  collision detection
