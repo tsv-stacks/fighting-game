@@ -45,6 +45,7 @@ class Fighter {
     this.framesElapsed = 0;
     this.framesHold = 5;
     this.offset = offset;
+    this.dead = false;
 
     for (const sprite in this.sprites) {
       sprites[sprite].image = new Image();
@@ -117,9 +118,22 @@ class Fighter {
 
   takeHit() {
     this.switchSprite("takeHit");
+
+    if (this.health <= 0) {
+      this.switchSprite("death");
+    } else {
+      this.switchSprite("takeHit");
+    }
   }
 
   switchSprite(sprite) {
+    if (this.image === this.sprites.death.image) {
+      if (this.framesCurrent === this.sprites.death.framesMax - 1) {
+        this.dead = true;
+      }
+      return;
+    }
+
     if (
       this.image === this.sprites.attack1.image &&
       this.framesCurrent < this.sprites.attack1.framesMax - 1
@@ -161,6 +175,10 @@ class Fighter {
     ) {
       this.image = this.sprites.takeHit.image;
       this.framesMax = this.sprites.takeHit.framesMax;
+      this.framesCurrent = 0;
+    } else if (sprite === "death" && this.image !== this.sprites.death.image) {
+      this.image = this.sprites.death.image;
+      this.framesMax = this.sprites.death.framesMax;
       this.framesCurrent = 0;
     }
   }

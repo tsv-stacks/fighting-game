@@ -180,30 +180,36 @@ window.addEventListener("load", () => {
   animate();
 
   window.addEventListener("keydown", (e) => {
-    if (e.key === "d") {
-      keys.d.pressed = true;
-      player.lastkey = "d";
-    } else if (e.key === "a") {
-      keys.a.pressed = true;
-      player.lastkey = "a";
-    } else if (e.key === "w" && player.jumps < 1) {
-      player.velocity.y = -20;
-      player.jumps++;
-    } else if (e.key === "ArrowRight") {
-      keys.ArrowRight.pressed = true;
-      enemy.lastkey = "ArrowRight";
-    } else if (e.key === "ArrowLeft") {
-      keys.ArrowLeft.pressed = true;
-      enemy.lastkey = "ArrowLeft";
-    } else if (e.key === "ArrowUp" && enemy.jumps < 1) {
-      enemy.velocity.y = -20;
-      enemy.jumps++;
-    } else if (e.key === " " && !player.isAttacking) {
-      console.log("attacking");
-      player.attack();
-    } else if (e.key === ";" && !enemy.isAttacking) {
-      console.log("enemy attacking");
-      enemy.attack();
+    if (!player.dead) {
+      if (e.key === "d") {
+        keys.d.pressed = true;
+        player.lastkey = "d";
+      } else if (e.key === "a") {
+        keys.a.pressed = true;
+        player.lastkey = "a";
+      } else if (e.key === "w" && player.jumps < 1) {
+        player.velocity.y = -20;
+        player.jumps++;
+      } else if (e.key === " " && !player.isAttacking) {
+        console.log("attacking");
+        player.attack();
+      }
+    }
+
+    if (!enemy.dead) {
+      if (e.key === "ArrowRight") {
+        keys.ArrowRight.pressed = true;
+        enemy.lastkey = "ArrowRight";
+      } else if (e.key === "ArrowLeft") {
+        keys.ArrowLeft.pressed = true;
+        enemy.lastkey = "ArrowLeft";
+      } else if (e.key === "ArrowUp" && enemy.jumps < 1) {
+        enemy.velocity.y = -20;
+        enemy.jumps++;
+      } else if (e.key === ";" && !enemy.isAttacking) {
+        console.log("enemy attacking");
+        enemy.attack();
+      }
     }
   });
 
