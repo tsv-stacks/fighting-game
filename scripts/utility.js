@@ -10,7 +10,7 @@ export function rectangularCollision({ rectangle1, rectangle2 }) {
   );
 }
 
-let timer = 60;
+let timer = 10;
 let timerId;
 export function decreaseTimer(player, enemy) {
   if (timer > 0) {
@@ -27,12 +27,13 @@ export function decreaseTimer(player, enemy) {
 export function determineWinner({ player, enemy, timerId }) {
   clearTimeout(timerId);
   document.getElementById("displayText").style.display = "flex";
+  document.getElementById("restartText").style.display = "flex";
   if (player.health === enemy.health) {
-    document.getElementById("displayText").innerHTML = "DRAW";
+    document.getElementById("displayText").innerHTML = "DRAW!";
   } else if (player.health > enemy.health) {
-    document.getElementById("displayText").innerHTML = "PLAYER 1 WINS";
+    document.getElementById("displayText").innerHTML = "PLAYER 1 WINS!";
   } else if (player.health < enemy.health) {
-    document.getElementById("displayText").innerHTML = "PLAYER 2 WINS";
+    document.getElementById("displayText").innerHTML = "PLAYER 2 WINS!";
   }
 }
 

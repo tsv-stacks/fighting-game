@@ -50,7 +50,7 @@ A timer is displayed, and if the time runs out, the player with the most health 
 - [x] Refactor all switch statements to if-else
 - [ ] Basic logic to mimic enemy AI
 - [ ] Additional characters / character select
-- [ ] Add a cooldown on attack
+- [x] Add a cooldown on attack
 
 ## Credits
 

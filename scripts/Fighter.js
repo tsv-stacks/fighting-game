@@ -46,7 +46,6 @@ class Fighter {
     this.framesHold = 5;
     this.offset = offset;
     this.dead = false;
-
     this.attackCooldown = false;
 
     for (const sprite in this.sprites) {

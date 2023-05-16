@@ -86,3 +86,19 @@
   left: 0;
   display: none;
 }
+
+#restartText {
+  position: absolute;
+  color: white;
+  text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000,
+    3px 3px 0 #000;
+  align-items: center;
+  font-size: 24px;
+  justify-content: center;
+  top: 20%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  display: none;
+}
