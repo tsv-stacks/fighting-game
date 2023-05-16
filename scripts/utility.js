@@ -14,7 +14,7 @@ let timer = 10;
 let timerId;
 
 export function resetTimer(p1, p2) {
-  timer = 10;
+  timer = 5;
   decreaseTimer(p1, p2);
 }
 

@@ -48,6 +48,8 @@ class Fighter {
     this.dead = false;
     this.attackCooldown = false;
 
+    this.gameOver = false;
+
     for (const sprite in this.sprites) {
       sprites[sprite].image = new Image();
       sprites[sprite].image.src = sprites[sprite].imageSrc;
@@ -80,6 +82,11 @@ class Fighter {
   }
 
   update(ctx) {
+    if (this.gameOver) {
+      this.switchSprite("death");
+      return;
+    }
+
     this.draw(ctx);
 
     if (!this.dead) {
@@ -138,6 +145,7 @@ class Fighter {
     this.switchSprite("takeHit");
 
     if (this.health <= 0) {
+      this.gameOver = true;
       this.switchSprite("death");
     } else {
       this.switchSprite("takeHit");
@@ -145,10 +153,14 @@ class Fighter {
   }
 
   restart(ctx) {
+    this.gameOver = false;
     this.position.y = 0;
     this.health = 100;
+    this.framesCurrent = 0;
+    this.framesElapsed = 0;
     this.dead = false;
     this.switchSprite("idle");
+    this.image = this.sprites.idle.image;
     this.framesCurrent = 0;
     this.update(ctx);
   }

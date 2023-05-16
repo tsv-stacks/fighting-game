@@ -219,20 +219,20 @@ window.addEventListener("load", () => {
       }
     }
 
-    // if (
-    //   e.key === "Enter" &&
-    //   document.getElementById("displayText").style.display === "flex"
-    // ) {
-    //   gsap.to("#enemyHealth", { width: "100%" });
-    //   gsap.to("#playerHealth", { width: "100%" });
-    //   player.restart(ctx);
-    //   enemy.restart(ctx);
-    //   player.position.x = 225;
-    //   enemy.position.x = 768;
-    //   document.getElementById("displayText").style.display = "none";
-    //   document.getElementById("restartText").style.display = "none";
-    //   resetTimer(player, enemy);
-    // }
+    if (
+      e.key === "Enter" &&
+      document.getElementById("displayText").style.display === "flex"
+    ) {
+      gsap.to("#enemyHealth", { width: "100%" });
+      gsap.to("#playerHealth", { width: "100%" });
+      player.position.x = 225;
+      enemy.position.x = 768;
+      document.getElementById("displayText").style.display = "none";
+      document.getElementById("restartText").style.display = "none";
+      player.restart(ctx);
+      enemy.restart(ctx);
+      resetTimer(player, enemy);
+    }
   });
 
   window.addEventListener("keyup", (e) => {
