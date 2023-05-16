@@ -32,12 +32,10 @@ const imgArray = [
   bgImg10,
 ];
 
-function getRandomNumber() {
+export function getRandomNumber() {
   return Math.floor(Math.random() * 10) + 1;
 }
 
-let randomNum = getRandomNumber();
-
-export function background(context, width, height) {
+export function background(context, width, height, randomNum) {
   return context.drawImage(imgArray[randomNum - 1], 0, 0, width, height);
 }

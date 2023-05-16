@@ -9,11 +9,12 @@ import {
   timerId,
   resetTimer,
 } from "./scripts/utility.js";
-import { background } from "./scripts/background.js";
+import { background, getRandomNumber } from "./scripts/background.js";
 
 window.addEventListener("load", () => {
   const canvas = document.getElementById("canvas1");
   const ctx = canvas.getContext("2d");
+  let randomNum = getRandomNumber();
 
   canvas.width = 1024;
   canvas.height = 576;
@@ -88,7 +89,7 @@ window.addEventListener("load", () => {
     ctx.fillStyle = "black";
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    background(ctx, canvas.width, canvas.height);
+    background(ctx, canvas.width, canvas.height, randomNum);
 
     player.update(ctx);
     enemy.update(ctx);
@@ -232,6 +233,8 @@ window.addEventListener("load", () => {
       player.restart(ctx);
       enemy.restart(ctx);
       resetTimer(player, enemy);
+      randomNum = getRandomNumber();
+      background(ctx, canvas.width, canvas.height, randomNum);
     }
   });
 
