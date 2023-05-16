@@ -10,11 +10,11 @@ export function rectangularCollision({ rectangle1, rectangle2 }) {
   );
 }
 
-let timer = 10;
+let timer = 60;
 let timerId;
 
 export function resetTimer(p1, p2) {
-  timer = 5;
+  timer = 60;
   decreaseTimer(p1, p2);
 }
 
