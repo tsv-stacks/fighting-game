@@ -12,6 +12,12 @@ export function rectangularCollision({ rectangle1, rectangle2 }) {
 
 let timer = 10;
 let timerId;
+
+export function resetTimer(p1, p2) {
+  timer = 10;
+  decreaseTimer(p1, p2);
+}
+
 export function decreaseTimer(player, enemy) {
   if (timer > 0) {
     timerId = setTimeout(() => decreaseTimer(player, enemy, timerId), 1000);

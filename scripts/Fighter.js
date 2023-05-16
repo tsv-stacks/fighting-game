@@ -144,6 +144,15 @@ class Fighter {
     }
   }
 
+  restart(ctx) {
+    this.position.y = 0;
+    this.health = 100;
+    this.dead = false;
+    this.switchSprite("idle");
+    this.framesCurrent = 0;
+    this.update(ctx);
+  }
+
   switchSprite(sprite) {
     if (this.image === this.sprites.death.image) {
       if (this.framesCurrent === this.sprites.death.framesMax - 1)

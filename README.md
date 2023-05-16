@@ -51,6 +51,9 @@ A timer is displayed, and if the time runs out, the player with the most health 
 - [ ] Basic logic to mimic enemy AI
 - [ ] Additional characters / character select
 - [x] Add a cooldown on attack
+- [x] Restart the game using Enter
+- [x] Display restart game message
+- [x] Cannot do damage on gameover
 
 ## Credits
 
