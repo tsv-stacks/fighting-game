@@ -7,6 +7,7 @@ import {
   rectangularCollision,
   timer,
   timerId,
+  resetTimer,
 } from "./scripts/utility.js";
 import { background } from "./scripts/background.js";
 
@@ -141,7 +142,10 @@ window.addEventListener("load", () => {
     ) {
       enemy.takeHit();
       player.isAttacking = false;
-      enemy.health -= 25;
+      if (document.getElementById("displayText").style.display !== "flex") {
+        enemy.health -= 25;
+      }
+
       gsap.to("#enemyHealth", {
         width: `${enemy.health}%`,
       });
@@ -161,7 +165,9 @@ window.addEventListener("load", () => {
     ) {
       enemy.isAttacking = false;
       player.takeHit();
-      player.health -= 25;
+      if (document.getElementById("displayText").style.display !== "flex") {
+        player.health -= 25;
+      }
       gsap.to("#playerHealth", {
         width: `${player.health}%`,
       });
@@ -211,6 +217,21 @@ window.addEventListener("load", () => {
       } else if (e.key === ";" && !enemy.isAttacking) {
         enemy.attack();
       }
+    }
+
+    if (
+      e.key === "Enter" &&
+      document.getElementById("displayText").style.display === "flex"
+    ) {
+      gsap.to("#enemyHealth", { width: "100%" });
+      gsap.to("#playerHealth", { width: "100%" });
+      player.position.x = 225;
+      enemy.position.x = 768;
+      document.getElementById("displayText").style.display = "none";
+      document.getElementById("restartText").style.display = "none";
+      player.restart(ctx);
+      enemy.restart(ctx);
+      resetTimer(player, enemy);
     }
   });
 

@@ -45,12 +45,15 @@ A timer is displayed, and if the time runs out, the player with the most health 
 - [ ] Seperate background images into layers and render seperately
 - [ ] Make idle for both characters same speed
 - [ ] Make it a best of 3 with win tracker under health bar
-- [ ] Game over screen + pause game
+- [ ] Pause game
 - [ ] When both players moving in same direction move parallax bg
 - [x] Refactor all switch statements to if-else
 - [ ] Basic logic to mimic enemy AI
 - [ ] Additional characters / character select
-- [ ] Add a cooldown on attack
+- [x] Add a cooldown on attack
+- [x] Restart the game using Enter
+- [x] Display restart game message
+- [x] Cannot do damage on gameover
 
 ## Credits
 
